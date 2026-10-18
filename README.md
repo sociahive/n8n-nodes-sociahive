@@ -1,12 +1,68 @@
+<p align="center">
+  <a href="https://www.sociahive.com">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sociahive/.github/main/assets/brand/logo-dark.svg">
+      <img alt="SociaHive" src="https://raw.githubusercontent.com/sociahive/.github/main/assets/brand/logo-light.svg" width="220">
+    </picture>
+  </a>
+</p>
+
+<p align="center">Run your social media from your AI tool: schedule posts, build DM and comment automations, and read analytics.</p>
+<p align="center">These are SociaHive nodes for n8n: post, automate and react to SociaHive events in your workflows. Coming soon, not on npm yet.</p>
+
+<p align="center">
+  <a href="https://www.sociahive.com">Website</a> ·
+  <a href="https://www.sociahive.com/developers">Developers</a> ·
+  <a href="https://docs.sociahive.com/webhooks">Webhooks</a> ·
+  <a href="https://www.sociahive.com/auth/login?view=sign_up">Sign up</a>
+</p>
+
+<p align="center">
+  <a href="https://docs.n8n.io/integrations/community-nodes/"><img alt="n8n community node" src="https://img.shields.io/badge/n8n-community%20node-EA4B71"></a>
+  <a href="LICENSE.md"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
+</p>
+
 # n8n-nodes-sociahive
 
 [SociaHive](https://www.sociahive.com) nodes for [n8n](https://n8n.io): schedule and publish posts to Instagram, Facebook, LinkedIn, X, Threads, TikTok, YouTube, Bluesky and Pinterest, upload media, turn DM automations on and off, and start workflows from SociaHive events.
 
-[Installation](#installation) · [Credentials](#credentials) · [Operations](#operations) · [Trigger](#trigger) · [Examples](#example-workflows) · [Resources](#resources)
+**Coming soon:** this package is not on npm yet, so it cannot be installed from n8n until it is published.
+
+## What's in it
+
+- **SociaHive** node: accounts, posts, media uploads, automations (flows) and analytics. See [Operations](#operations).
+- **SociaHive Trigger** node: starts a workflow when a post is published or fails, or when an automation starts or errors. See [Trigger](#trigger).
+- **SociaHive API** credential: your SociaHive API key.
+
+## Platforms
+
+### Publish to
+
+<p align="center">
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/instagram.svg" alt="Instagram" title="Instagram" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/facebook.svg" alt="Facebook" title="Facebook" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/linkedin.svg" alt="LinkedIn" title="LinkedIn" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/x.svg" alt="X" title="X" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/threads.svg" alt="Threads" title="Threads" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/tiktok.svg" alt="TikTok" title="TikTok" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/youtube.svg" alt="YouTube" title="YouTube" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/bluesky.svg" alt="Bluesky" title="Bluesky" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/content-scheduler"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/pinterest.svg" alt="Pinterest" title="Pinterest" width="24"></a>
+</p>
+
+### Automate DMs and comments on
+
+<p align="center">
+  <a href="https://www.sociahive.com/automation/instagram"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/instagram.svg" alt="Instagram" title="Instagram" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/automation/facebook"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/facebook.svg" alt="Facebook" title="Facebook" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/features/messenger"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/messenger.svg" alt="Messenger" title="Messenger" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/automation/whatsapp"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/whatsapp.svg" alt="WhatsApp" title="WhatsApp" width="24"></a>&nbsp;&nbsp;
+  <a href="https://www.sociahive.com/automation/telegram"><img src="https://raw.githubusercontent.com/sociahive/.github/main/assets/platforms/telegram.svg" alt="Telegram" title="Telegram" width="24"></a>
+</p>
 
 ## Installation
 
-In n8n, open **Settings > Community Nodes**, select **Install**, and enter:
+Once published, in n8n, open **Settings > Community Nodes**, select **Install**, and enter:
 
 ```
 n8n-nodes-sociahive
@@ -50,18 +106,25 @@ Each platform has its own text and media rules (for example X allows 280 charact
 | Post Failed (`post.failed`) | A scheduled post failed to publish. |
 | Automation Started (`flow.triggered`) | An automation started for someone. |
 | Automation Error (`flow.error`) | An automation hit an error. |
-| Lead Collected (`data.collected`) | A flow collected a value (email, phone, answer). Requires lead webhooks to be enabled on your SociaHive account. |
 
 Each delivery is a JSON body `{ id, event, timestamp, data }`. The node checks the `X-SociaHive-Signature` header (`t=<unix seconds>,v1=<HMAC-SHA256 of "<t>.<body>">`) with the signing secret SociaHive returns when the webhook is created, and refuses a delivery that is unsigned, tampered with, or more than five minutes old.
 
 Webhook deliveries need a plan with API access (the trial or a paid plan).
 
+Each active SociaHive Trigger uses one webhook in your SociaHive account. Plans allow Creator 2, Studio 5, Pro 10 and Agency 50 webhooks, shared with the webhooks you add in SociaHive under **Integrations > Webhooks**.
+
 ## Example workflows
 
 - **Publish from a spreadsheet.** Google Sheets Trigger (row added) > SociaHive: Media > Upload From URL > SociaHive: Post > Create (Schedule, `Scheduled At` from the row).
-- **Leads to your CRM.** SociaHive Trigger (Lead Collected) > HubSpot: Create Contact.
 - **Alert on failures.** SociaHive Trigger (Post Failed, Automation Error) > Slack: Send Message.
 - **Campaign switch.** Schedule Trigger > SociaHive: Flow > Activate on launch day, Deactivate a week later.
+
+## Data and permissions
+
+- The API key only reaches what its scopes allow. Revoke it any time in **Settings > API keys**.
+- Accounts connect through each platform's official login and APIs. SociaHive does not scrape and never asks for your account password (Bluesky uses an app password, Telegram a bot token).
+- Platform tokens are stored encrypted on SociaHive's servers and are never returned by the API.
+- Trigger deliveries are signed. The node refuses a delivery that is unsigned, changed, or more than five minutes old.
 
 ## Compatibility
 
@@ -69,8 +132,9 @@ Built with `@n8n/node-cli` and tested with n8n 2.x.
 
 ## Resources
 
+- [Changelog](CHANGELOG.md)
 - [SociaHive developer docs](https://www.sociahive.com/developers)
-- [SociaHive webhooks](https://www.sociahive.com/docs/webhooks)
+- [SociaHive webhooks](https://docs.sociahive.com/webhooks)
 - [n8n community nodes](https://docs.n8n.io/integrations/#community-nodes)
 
 ## License

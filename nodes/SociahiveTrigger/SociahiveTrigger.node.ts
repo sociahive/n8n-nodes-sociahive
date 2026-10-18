@@ -85,12 +85,6 @@ export class SociahiveTrigger implements INodeType {
 						description: 'An automation started for someone',
 					},
 					{
-						name: 'Lead Collected',
-						value: 'data.collected',
-						description:
-							'New lead collected by a flow. Requires lead webhooks to be enabled on your SociaHive account.',
-					},
-					{
 						name: 'Post Failed',
 						value: 'post.failed',
 						description: 'A scheduled post failed to publish',
