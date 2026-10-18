@@ -12,5 +12,5 @@ First release.
 - Media: Upload From URL.
 - Flow: Get Many, Get, Activate, Deactivate, Get Stats.
 - Analytics: Get Overview.
-- Trigger: Post Published, Post Failed, Automation Started, Automation Error and Lead Collected. Every delivery's `X-SociaHive-Signature` is checked against the subscription's signing secret.
+- Trigger: Post Published, Post Failed, Automation Started and Automation Error. Every delivery's `X-SociaHive-Signature` is checked against the subscription's signing secret.
 - Built with `@n8n/node-cli` and published from GitHub Actions with npm provenance.
