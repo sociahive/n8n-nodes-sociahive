@@ -1,0 +1,62 @@
+{
+	"name": "n8n-nodes-sociahive",
+	"version": "0.2.0",
+	"description": "n8n community nodes for SociaHive: schedule social posts, upload media, manage DM automations and receive SociaHive events.",
+	"license": "MIT",
+	"homepage": "https://www.sociahive.com/developers",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"sociahive",
+		"social-media",
+		"instagram",
+		"scheduling",
+		"automation"
+	],
+	"author": {
+		"name": "SociaHive",
+		"email": "support@sociahive.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sociahive/n8n-nodes-sociahive.git"
+	},
+	"bugs": {
+		"url": "https://github.com/sociahive/n8n-nodes-sociahive/issues"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist",
+		"!dist/tsconfig.tsbuildinfo"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/SociahiveApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Sociahive/Sociahive.node.js",
+			"dist/nodes/SociahiveTrigger/SociahiveTrigger.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "^0.52.5",
+		"eslint": "9.32.0",
+		"n8n-workflow": "^2.16.0",
+		"prettier": "3.6.2",
+		"release-it": "^21.1.0",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
