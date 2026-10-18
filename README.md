@@ -25,7 +25,7 @@
 
 [SociaHive](https://www.sociahive.com) nodes for [n8n](https://n8n.io): schedule and publish posts to Instagram, Facebook, LinkedIn, X, Threads, TikTok, YouTube, Bluesky and Pinterest, upload media, turn DM automations on and off, and start workflows from SociaHive events.
 
-**Status:** version 0.2.0 is ready but not on npm yet. The install steps below work once the first release is published.
+**Note:** this package is not published to npm yet.
 
 ## What's in it
 
