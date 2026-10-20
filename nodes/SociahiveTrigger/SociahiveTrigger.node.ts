@@ -90,9 +90,21 @@ export class SociahiveTrigger implements INodeType {
 						description: 'A scheduled post failed to publish',
 					},
 					{
+						name: 'Post Plug Fired',
+						value: 'post.plug_fired',
+						description:
+							'A plug on a post reached its like or comment threshold and reposted or commented (Creator plan or above)',
+					},
+					{
 						name: 'Post Published',
 						value: 'post.published',
 						description: 'A scheduled post was published',
+					},
+					{
+						name: 'Post Review Decision',
+						value: 'post.review_decision',
+						description:
+							'A client approved a post, asked for changes or commented on a review link (Studio plan or above)',
 					},
 				],
 			},

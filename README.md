@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">Run your social media from your AI tool: schedule posts, build DM and comment automations, and read analytics.</p>
-<p align="center">These are SociaHive nodes for n8n: post, automate and react to SociaHive events in your workflows. Coming soon, not on npm yet.</p>
+<p align="center">These are SociaHive nodes for n8n: post, automate and react to SociaHive events in your workflows.</p>
 
 <p align="center">
   <a href="https://www.sociahive.com">Website</a> ·
@@ -24,14 +24,12 @@
 
 # n8n-nodes-sociahive
 
-[SociaHive](https://www.sociahive.com) nodes for [n8n](https://n8n.io): schedule and publish posts to Instagram, Facebook, LinkedIn, X, Threads, TikTok, YouTube, Bluesky and Pinterest, upload media, turn DM automations on and off, and start workflows from SociaHive events.
-
-**Coming soon:** this package is not on npm yet, so it cannot be installed from n8n until it is published.
+[SociaHive](https://www.sociahive.com) nodes for [n8n](https://n8n.io): schedule and publish posts to Instagram, Facebook, LinkedIn, X, Threads, TikTok, YouTube, Bluesky, Pinterest and more, upload media, turn DM automations on and off, and start workflows from SociaHive events.
 
 ## What's in it
 
 - **SociaHive** node: accounts, posts, media uploads, automations (flows) and analytics. See [Operations](#operations).
-- **SociaHive Trigger** node: starts a workflow when a post is published or fails, or when an automation starts or errors. See [Trigger](#trigger).
+- **SociaHive Trigger** node: starts a workflow when a post is published or fails, when a client reviews a post, when a plug fires, or when an automation starts or errors. See [Trigger](#trigger).
 - **SociaHive API** credential: your SociaHive API key.
 
 ## Platforms
@@ -62,7 +60,7 @@
 
 ## Installation
 
-Once published, in n8n, open **Settings > Community Nodes**, select **Install**, and enter:
+In n8n, open **Settings > Community Nodes**, select **Install**, and enter:
 
 ```
 n8n-nodes-sociahive
@@ -106,8 +104,17 @@ Each platform has its own text and media rules (for example X allows 280 charact
 | Post Failed (`post.failed`) | A scheduled post failed to publish. |
 | Automation Started (`flow.triggered`) | An automation started for someone. |
 | Automation Error (`flow.error`) | An automation hit an error. |
+| Post Review Decision (`post.review_decision`) | A client approved a post, asked for changes or commented on a review link. Needs Studio or above. |
+| Post Plug Fired (`post.plug_fired`) | A plug on a post reached its like, comment, repost or view threshold and reposted or commented. Needs Creator or above. |
 
-Each delivery is a JSON body `{ id, event, timestamp, data }`. The node checks the `X-SociaHive-Signature` header (`t=<unix seconds>,v1=<HMAC-SHA256 of "<t>.<body>">`) with the signing secret SociaHive returns when the webhook is created, and refuses a delivery that is unsigned, tampered with, or more than five minutes old.
+Each delivery is a JSON body `{ id, event, timestamp, data }`. For the two newer events `data` is:
+
+- `post.review_decision`: `{ postId, reviewLinkId, kind, reviewerName, comment? }`, where `kind` is `approved`, `changes_requested` or `comment`.
+- `post.plug_fired`: `{ plug_id, post_id, account_id, platform, metric, threshold, value, action }`, where `metric` is `likes`, `comments`, `reposts` or `views` and `action` is `repost` or `comment`.
+
+Activating a trigger with an event your plan does not include fails with "<event> is not included in your plan."
+
+ The node checks the `X-SociaHive-Signature` header (`t=<unix seconds>,v1=<HMAC-SHA256 of "<t>.<body>">`) with the signing secret SociaHive returns when the webhook is created, and refuses a delivery that is unsigned, tampered with, or more than five minutes old.
 
 Webhook deliveries need a plan with API access (the trial or a paid plan).
 

@@ -2,7 +2,7 @@
 
 All notable changes to `n8n-nodes-sociahive` are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.2.0] - Unreleased
+## [0.2.0] - 2026-10-20
 
 First release.
 
@@ -12,5 +12,5 @@ First release.
 - Media: Upload From URL.
 - Flow: Get Many, Get, Activate, Deactivate, Get Stats.
 - Analytics: Get Overview.
-- Trigger: Post Published, Post Failed, Automation Started and Automation Error. Every delivery's `X-SociaHive-Signature` is checked against the subscription's signing secret.
+- Trigger: Post Published, Post Failed, Post Review Decision (a client approved a post, asked for changes or commented), Post Plug Fired, Automation Started and Automation Error. Every delivery's `X-SociaHive-Signature` is checked against the subscription's signing secret.
 - Built with `@n8n/node-cli` and published from GitHub Actions with npm provenance.
