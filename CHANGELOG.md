@@ -2,6 +2,12 @@
 
 All notable changes to `n8n-nodes-sociahive` are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-10-20
+
+### Changed
+
+- Published through npm trusted publishing, with provenance. No changes to the node.
+
 ## [0.2.0] - 2026-10-20
 
 First release.

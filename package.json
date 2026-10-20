@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-sociahive",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "n8n community nodes for SociaHive: schedule social posts, upload media, manage DM automations and receive SociaHive events.",
 	"license": "MIT",
 	"homepage": "https://www.sociahive.com/developers",
@@ -19,7 +19,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/sociahive/n8n-nodes-sociahive.git"
+		"url": "git+https://github.com/sociahive/n8n-nodes-sociahive.git"
 	},
 	"bugs": {
 		"url": "https://github.com/sociahive/n8n-nodes-sociahive/issues"
